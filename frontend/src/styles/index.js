@@ -1,0 +1,6 @@
+import './normalize.sass'
+import './font.sass'
+import './variables.sass'
+import './pages/home.sass'
+import './index.sass'
+import './components/card.sass'
