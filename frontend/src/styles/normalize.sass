@@ -5,7 +5,7 @@
 ::before,
 ::after  
   box-sizing: border-box 
- 
+
 
 /**
   Убираем внутренние отступы слева тегам списков,
@@ -13,7 +13,7 @@
  */
 :where(ul, ol):where([class])  
   padding-left: 0 
- 
+
 
 /**
   Убираем внешние отступы body и двум другим тегам,
@@ -22,7 +22,7 @@
 body,
 :where(blockquote, figure):where([class])  
   margin: 0 
- 
+
 
 /**
   Убираем внешние отступы вертикали нужным тегам,
@@ -41,17 +41,17 @@ body,
   dl
 ):where([class])  
   margin-block: 0 
- 
+
 
 :where(dd[class])  
   margin-left: 0 
- 
+
 
 :where(fieldset[class])  
   margin-left: 0 
   padding: 0 
   border: none 
- 
+
 
 /**
   Убираем стандартный маркер маркированному списку,
@@ -59,11 +59,11 @@ body,
  */
 :where(ul[class])  
   list-style: none 
- 
+
 
 :where(address[class])  
   font-style: normal 
- 
+
 
 /**
   Обнуляем вертикальные внешние отступы параграфа,
@@ -74,7 +74,7 @@ p
   --paragraphMarginBottom: 24px 
 
   margin-block: 0 
- 
+
 
 /**
   Внешний отступ вниз для параграфа без атрибута class,
@@ -82,7 +82,7 @@ p
  */
 :where(p:not([class]):not(:last-child))  
   margin-bottom: var(--paragraphMarginBottom) 
- 
+
 
 
 /**
@@ -93,7 +93,7 @@ video
   display: block 
   max-width: 100% 
   height: auto 
- 
+
 
 /**
   Наследуем свойства шрифт для полей ввода
@@ -103,7 +103,7 @@ textarea,
 select,
 button  
   font: inherit 
- 
+
 
 html  
   /**
@@ -116,7 +116,7 @@ html
     при появлении / исчезновении скроллбара
    */
   scrollbar-gutter: stable 
- 
+
 
 /**
   Плавный скролл
@@ -124,7 +124,7 @@ html
 html,
 :has(:target)  
   scroll-behavior: smooth 
- 
+
 
 body  
   /**
@@ -136,14 +136,14 @@ body
     Унифицированный интерлиньяж
    */
   line-height: 1.5 
- 
+
 
 /**
   Нормализация высоты элемента ссылки при его инспектировании в DevTools
  */
 a:where([class])  
   display: inline-flex 
- 
+
 
 /**
   Курсор-рука при наведении на элемент
@@ -151,7 +151,7 @@ a:where([class])
 button,
 label  
   cursor: pointer 
- 
+
 
 /**
   Приводим к единому цвету svg-элементы
@@ -163,7 +163,7 @@ label
   [fill^="url"]
 ))  
   fill: currentColor 
- 
+
 
 /**
   Приводим к единому цвету svg-элементы
@@ -175,14 +175,14 @@ label
   [stroke^="url"]
 ))  
   stroke: currentColor 
- 
+
 
 /**
   Чиним баг задержки смены цвета при взаимодействии с svg-элементами
  */
 svg *  
   transition-property: fill, stroke 
- 
+
 
 /**
   Приведение рамок таблиц в классический 'collapse' вид
@@ -190,7 +190,7 @@ svg *
 :where(table)  
   border-collapse: collapse 
   border-color: currentColor 
- 
+
 
 /**
   Удаляем все анимации и переходы для людей,
@@ -204,5 +204,4 @@ svg *
     animation-iteration-count: 1 !important 
     transition-duration: 0.01ms !important 
     scroll-behavior: auto !important 
-   
- 
+
