@@ -3,6 +3,7 @@ const express = require('express')
 const {Pool} = require('pg')
 const path = require('path')
 const cors = require('cors')
+const { error } = require('console')
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -50,6 +51,30 @@ app.get('/api/electronics',async(req,res)=>{
     }
 })
 
+app.get('/api/electronics/:id',async (req,res)=>{
+    const id = parseInt(req.params.id)
+    console.log(`→ Запрос к /api/electronics/${id}`)
+    try{
+        const copmRes =await pool.query(
+            'SELECT id, name_detail, description, images FROM electronic_components WHERE id = $1',[id]
+        )
+        if (copmRes.rows.length === 0) {
+            return res.status(404).json({error: 'Компонент не найден'})
+        }
+        const component = copmRes.rows[0]
+
+        const devicesRes = await pool.query(
+            'SELECT id, name_device, parameters, price, images FROM electronic_devices WHERE parent_id = $1',[id]
+        )
+        res.json({component,devices:devicesRes.rows})
+
+        }
+        catch (err){
+            console.error(`Ошибка в /api/electronics/${id}:`, err.message)
+            res.status(500).json({error: 'Ошибка сервера'})
+        }
+})
+
 
 
 
@@ -63,6 +88,7 @@ app.get(/.*/,(req,res)=>{
             res.status(500).send({error: 'Ошибка сервера'})
         }
     })
+
 })
 
 app.listen(PORT,()=>{

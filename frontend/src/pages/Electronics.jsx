@@ -1,27 +1,27 @@
 import { useState, useEffect } from "react";
-import Card from "../components/card";
+import Card from "../components/Card";
 import axios from "axios";
 
 const Electronics = () => {
-const [components, setComponents] = useState([]);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState(null);
+const [components, setComponents] = useState([])
+const [loading, setLoading] = useState(true)
+const [error, setError] = useState(null)
 useEffect(() => {
     axios
     .get("/api/electronics")
     .then((res) => {
-        setComponents(res.data);
-        setLoading(false);
+        setComponents(res.data)
+        setLoading(false)
     })
     .catch((err) => {
-        setError("Не удалось загрузить компоненты");
-        setLoading(false);
-        console.error(err);
+        setError("Не удалось загрузить компоненты")
+        setLoading(false)
+        console.error(err)
     });
 }, []);
 
 
-if (loading) return <p>Загрузка...</p>;
+if (loading) return <p>Загрузка...</p>
 if (error) return <div className="container_error">{error}</div>;
 return (
     <section className="container">
