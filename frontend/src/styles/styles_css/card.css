@@ -11,8 +11,8 @@
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.3s ease-in-out;
+  cursor: default;
 }
 .card__button {
   background-image: var(--color-gradient);
@@ -21,6 +21,11 @@
   border: 0 solid;
   border-radius: 30px;
   font-size: var(--font-size-desktop);
+  box-shadow: 0 0 0 white;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.card__button:hover {
+  box-shadow: var(--box-shadow-blue);
 }
 
 .card:hover {
