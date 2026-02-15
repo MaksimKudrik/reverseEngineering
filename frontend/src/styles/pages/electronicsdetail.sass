@@ -1,0 +1,90 @@
+.device-cards
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr))
+    gap: 4rem
+    justify-content: center
+    max-width: 1300px
+
+
+.device-card
+    background: var(--color-gray)
+    border-radius: 16px
+    overflow: hidden
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08)
+    transition: box-shadow 0.2s
+
+    &__content
+        padding: 1rem
+
+    &__button
+        background-image: var(--color-gradient)
+        width: 100%
+        height: 40px
+        border: 0 solid
+        border-radius: 30px
+        font-size: var(--font-size-desktop-bold)
+        cursor: pointer
+        margin-bottom: 20px
+        font-family: tt-r
+
+h3
+    text-align: center
+    font-size: var(--font-size-desktop)
+    font-family: tt-r
+.device-card:hover 
+    box-shadow: var(--box-shadow)
+
+
+
+.device-card img 
+    width: 100%
+    height: 100%
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: center
+    object-fit: contain
+
+
+.modal
+
+    position: fixed
+    inset: 0
+    background: rgba(0, 0, 0, 0.7)
+    display: flex
+    align-items: center
+    justify-content: center
+    z-index: 1000
+    backdrop-filter: blur(5px)
+    &__content
+        background: white
+        width: 90%
+        max-width: 600px
+        max-height: 90vh
+        overflow-y: auto
+        border-radius: 20px
+        padding: 2.5rem
+        position: relative
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3)
+    &__close
+        position: absolute
+        top: 1rem
+        right: 1rem
+        font-size: 2.5rem
+        cursor: pointer
+        color: #718096
+    &__close:hover
+        color: #2d3748
+
+    &__image
+        width: 100%
+        max-height: 50vh
+        border-radius: 12px
+        margin-bottom: 1.5rem
+        object-fit: contain
+
+
+
+
+
+
+

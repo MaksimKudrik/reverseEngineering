@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import Card from "../components/Card";
 import axios from "axios";
+import ScrollToTop from "../components/scrollButton";
 
 const Electronics = () => {
 const [components, setComponents] = useState([])
 const [loading, setLoading] = useState(true)
 const [error, setError] = useState(null)
+
 useEffect(() => {
     axios
     .get("/api/electronics")
@@ -44,6 +46,7 @@ return (
         />
         ))}
         </main>
+        < ScrollToTop />
     </section>
     );
 };
