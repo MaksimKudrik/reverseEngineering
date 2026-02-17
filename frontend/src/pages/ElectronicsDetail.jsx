@@ -40,7 +40,6 @@ const ElectronicsDetail = () => {
             </header>
 
             <h1>{component.name_detail}</h1>
-            <p>{component.description || 'Нет описания'}</p>
 
             <h2>Устройства на базе этого компонента ({devices.length})</h2>
 
@@ -63,6 +62,7 @@ const ElectronicsDetail = () => {
                             </div>
                             <div className="device-card__content">
                                 <h3>{dev.name_device}</h3>
+                                <p className="descripstion">{dev.parameters}</p>
                                 <button
                                     className="device-card__button"
                                     onClick={() => openModal(dev)}

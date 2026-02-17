@@ -64,7 +64,7 @@ app.get('/api/electronics/:id',async (req,res)=>{
         const component = copmRes.rows[0]
 
         const devicesRes = await pool.query(
-            'SELECT id, name_device, parameters, price, images FROM electronic_devices WHERE parent_id = $1',[id]
+            'SELECT id, name_device, parameters, price, images, url_ozon FROM electronic_devices WHERE parent_id = $1 ORDER BY id ASC',[id]
         )
         res.json({component,devices:devicesRes.rows})
 
@@ -80,11 +80,12 @@ app.get('/api/mechanics' , async(req,res)=>{
     console.log('→ Запрос к /api/mechanics')
     try{
         const result = await pool.query(
-            `SELECT id, name_detail, photo, stl, m3d
+            `SELECT id, name_detail, description, photo, stl, m3d
             FROM mechanical_details
-            ORDER BY id`
+            ORDER BY id ASC`
         )
     res.json(result.rows)
+    
     }
     catch (err){
         console.error('Ошибка в /api/mechanics:', err.message)

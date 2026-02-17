@@ -1,39 +1,50 @@
 .cards 
     display: grid
-    grid-template-columns: repeat(auto-fit,minmax(340px,1fr))
-    gap: 4rem
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))
+    gap: 3rem
     justify-content: center
     max-width: 1300px
 
 
-
 .card 
-    background: white
+    background: var(--color-white)
+    border: 1px solid var(--color-black)
     border-radius: 16px
     overflow: hidden
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08)
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07)
+    transition: all 0.28s ease
+    display: flex
+    flex-direction: column
+    height: 100%
+    max-width: var(--card-max-width)
+
+
+.card__button 
+    background-color: var(--color-gradient-button)
+    width: 100%
+    height: 40px
+    border: 0 solid
+    border-radius: 30px
+    font-size: var(--font-size-desktop)
+    box-shadow: 0 0 0 #ffff
     transition: box-shadow 0.3s ease-in-out
-    cursor: default
-    &__button
-        background-image: var(--color-gradient)
-        width: 100%
-        height: 40px
-        border: 0 solid
-        border-radius: 30px
-        font-size: var(--font-size-desktop)
-        box-shadow: 0 0 0 #ffff
-        transition: box-shadow 0.3s ease-in-out
-    &__button:hover
-        box-shadow: var(--box-shadow-blue)
+    margin-top: auto 
+
+
+.card__button:hover 
+    box-shadow: var(--box-shadow-blue)
+
 
 .card:hover 
+    transform: translateY(-6px)
     box-shadow: var(--box-shadow)
 
 
 .photo 
     height: 220px
     background-image: var(--color-gradient)
-    
+
+
 .card img 
     width: 100%
     height: 100%
@@ -41,25 +52,29 @@
     background-repeat: no-repeat
     background-position: center
     object-fit: contain
-    
 
-.content
+
+.content 
+    flex: 1 1 auto
     display: flex
     flex-direction: column
     align-items: center
-    padding: 1.5rem
+    padding: 1.75rem 1.5rem
+    border-top: 1px solid var(--color-black)
 
-h2
-    font-size: var(--font-size-desktop-bold)
-    margin: 0 auto
-    margin: 5px 0 15px 0
-    color: var(--color-black)
 
-.description
-    font-size: var(--font-size-desktop)
-    color: var(--color-black)
-    width: 80%
+h2 
     text-align: center
-    margin-bottom: 20px
+    font-size: 26px
+    margin: 0 0 15px 0
+    color: var(--color-black)
 
 
+.description 
+    font-size: 22px
+    line-height: 1.45
+    color: var(--color-black)
+    text-align: center
+    margin: 0 auto 1.75rem
+    max-width: 90%
+    flex: 1 1 auto

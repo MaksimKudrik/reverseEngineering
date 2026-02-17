@@ -20,22 +20,22 @@ const ModalDetailMechanic =(props)=>{
                     e.target.src = "/images/placeholder.png"
                 }}
                 />
-
-                <h2>{part.name_detail}</h2>
-
-                <div className="modal-links">
-                {part.stl && (
-                    <a href={part.stl} className="download-btn" download>
-                    Скачать STL
-                    </a>
+                <div className="modal__content_container">
+                    <h2>{part.name_detail}</h2>
+                    <p>{part.description}</p>
+                    <div className="modal-links">
+                    {part.stl && (
+                        <a href={part.stl} className="download-btn" download>
+                        Скачать STL
+                        </a>
+                        )}
+                    {part.m3d && (
+                        <a href={part.m3d} className="download-btn" download>
+                        Скачать M3D
+                        </a>
                     )}
-                {part.m3d && (
-                    <a href={part.m3d} className="download-btn" download>
-                    Скачать M3D
-                    </a>
-                )}
+                    </div>
                 </div>
-
             </div>
         </div> )
 }

@@ -18,13 +18,16 @@ const ModalDetailElectronic = (props)=>{
                         e.target.src = "/images/placeholder.png"
                     }}
                 />
-                <h2>{device?.name_device}</h2>
-                <p className="modal__description">
-                    {device?.parameters || 'Нет описания'}
-                </p>
-                <p className="modal__price">
-                    Цена: {device?.price ? `${device?.price} ₽` : '-'}
-                </p>
+                <div className="modal__content_container">
+                    <h2>{device?.name_device}</h2>
+                    <p className="modal__description">
+                        {device?.parameters || 'Нет описания'}
+                    </p>
+                    <p className="modal__price">
+                        Цена: {device?.price ? `${device?.price} ₽` : '-'}
+                    </p>
+                    <button className="modal__button"><a href={device?.url_ozon}  target="_blank" rel="noopener noreferrer" >купить</a></button>
+                </div>
             </div>
         </div>
     )
