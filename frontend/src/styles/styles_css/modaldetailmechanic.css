@@ -3,15 +3,16 @@
 }
 
 .download-btn {
-  width: 150px;
+  width: 130px;
   height: 40px;
-  background-image: var(--color-gradient);
-  padding: 0.5rem;
+  background-color: var(--color-gradient-button);
+  padding: 0.3rem;
+  font-size: 20px;
   text-align: center;
   border-radius: 20px;
   text-decoration: none;
   color: var(--color-black);
-  margin-right: 70px;
+  margin-right: 40px;
   box-shadow: 0 0 0 white;
   transition: box-shadow 0.3s ease-in-out;
 }

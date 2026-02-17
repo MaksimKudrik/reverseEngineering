@@ -21,8 +21,8 @@ const ModalDetailMechanic =(props)=>{
                 }}
                 />
                 <div className="modal__content_container">
-                    <h2>{part.name_detail}</h2>
-                    <p>{part.description}</p>
+                    <h2 className="modal__title ">{part.name_detail}</h2>
+                    <p className="modal__description ">{part.description}</p>
                     <div className="modal-links">
                     {part.stl && (
                         <a href={part.stl} className="download-btn" download>

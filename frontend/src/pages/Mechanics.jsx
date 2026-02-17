@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Card from '../components/Card'
 import ModalDetailMechanic from '../components/ModalDetailMechanic';
-
+import ScrollToTop  from '../components/ScrollButton'
 const Mechanics = ()=>{
     const [parts, setParts] = useState([])
     const [selectedPart, setSelectedPart] = useState(null)
@@ -27,6 +27,7 @@ const Mechanics = ()=>{
     if (loging) return <p>Загрузка...</p>
 
     return (
+        
         <div className="container">
             <header>
                 <h1>Механические детали</h1>
@@ -51,6 +52,7 @@ const Mechanics = ()=>{
             {selectedPart && (
                 <ModalDetailMechanic part={selectedPart} onClose={closeModal} />
             )}
+            < ScrollToTop />
         </div>
     )
 
