@@ -3,7 +3,6 @@ const express = require('express')
 const {Pool} = require('pg')
 const path = require('path')
 const cors = require('cors')
-const { error } = require('console')
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -32,7 +31,6 @@ const pool = new Pool({
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
 })
-
 
 
 app.get('/api/electronics',async(req,res)=>{
@@ -64,7 +62,7 @@ app.get('/api/electronics/:id',async (req,res)=>{
         const component = copmRes.rows[0]
 
         const devicesRes = await pool.query(
-            'SELECT id, name_device, parameters, price, images, url_ozon FROM electronic_devices WHERE parent_id = $1 ORDER BY id ASC',[id]
+            'SELECT id, name_device, images FROM electronic_devices WHERE parent_id = $1 ORDER BY id ASC',[id]
         )
         res.json({component,devices:devicesRes.rows})
 
@@ -76,24 +74,57 @@ app.get('/api/electronics/:id',async (req,res)=>{
 })
 
 
-app.get('/api/mechanics' , async(req,res)=>{
-    console.log('→ Запрос к /api/mechanics')
-    try{
+const electronicsHandlers = {
+    '1': {
+        table: 'large_servo_motor',
+        fields: 'id, speed, voltage, current, speed_sensor, url_ozon, price',
+        logName: 'большойсерво-мотор'
+    },
+    '2':{
+        table: 'average_servo_motor',
+        fields: 'id, speed, voltage, current, speed_sensor, url_ozon, price',
+        logName: 'среднийсерво-мотор'
+    },
+    '3': {
+        table: 'color_sensor',
+        fields: 'id, recognizes_color, measures_light, polling_rate_ms, url_ozon, price',
+        logName: 'датчики-цвета'
+    },
+    '4': {
+        table: 'touch_sensors',
+        fields: 'id, touch_mode, force_mode, polling_rate, url_ozon, price',
+        logName: 'датчики-нажатия'
+    },
+    '5': {
+        table: 'distance_sensors',
+        fields: 'id, range, accuracy, type, polling_rate, url_ozon, price',
+        logName: 'датчики-расстояния'
+    }
+};
+
+app.get('/api/electronics/:type/:id', async (req, res) => {
+    const type = req.params.type;
+    const id = parseInt(req.params.id);
+
+    const handler = electronicsHandlers[type];
+    if (!handler) {
+        return res.status(400).json({ error: `Неизвестный тип электроники: ${type}` });
+    }
+
+    console.log(`→ Запрос к /api/electronics/${type}/${id} (${handler.logName})`);
+
+    try {
         const result = await pool.query(
-            `SELECT id, name_detail, description, photo, stl, m3d
-            FROM mechanical_details
-            ORDER BY id ASC`
-        )
-    res.json(result.rows)
-    
+        `SELECT ${handler.fields} FROM ${handler.table} WHERE device_id = $1 ORDER BY id ASC`,
+        [id]
+        );
+        
+        res.json(result.rows);
+    } catch (err) {
+        console.error(`Ошибка в /api/electronics/${type}/${id}:`, err.message);
+        res.status(500).json({ error: 'Ошибка сервера' });
     }
-    catch (err){
-        console.error('Ошибка в /api/mechanics:', err.message)
-        res.status(500).json({ error: 'Ошибка сервера' })
-    }
-
-})
-
+});
 
 
 app.use(express.static(path.join(__dirname,'../frontend/dist')))

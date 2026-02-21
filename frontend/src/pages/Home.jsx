@@ -15,21 +15,6 @@ const Home = () => {
                             
                     </div>
                 </div>
-                
-                {/* <механика /> */}
-                <div className="mechanic">
-                    <div className="mechanic__container">
-                            <h2 className="mechanic__title">механические компоненты</h2>
-                            <a href="/mechanics" 
-                                className="mechanic__card">
-                                <div className="mechanic__img"></div>
-                                    <p className="mechanic__text">балка, ось, рулевая тяга, соединительный штифт с выступом, угловая балка и т.д.</p>
-                                
-                            </a>
-                            
-                    </div>
-
-                </div>
             </div>
         </div>
     )

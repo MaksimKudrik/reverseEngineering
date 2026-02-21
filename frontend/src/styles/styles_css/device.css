@@ -1,0 +1,160 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.container.loading, .container.error {
+  text-align: center;
+  padding: 50px 20px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container.loading {
+  font-size: 18px;
+  color: #666;
+}
+.container.loading::after {
+  content: "...";
+  animation: dots 1.5s steps(4, end) infinite;
+}
+.container.error {
+  color: #d32f2f;
+  margin-bottom: 16px;
+}
+.container.error {
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.device-page header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #eee;
+}
+.device-page header {
+  font-size: 28px;
+  color: #333;
+  margin: 0;
+}
+.device-page .backLink {
+  color: #0066cc;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.device-page .backLink {
+  background-color: #f0f7ff;
+  text-decoration: underline;
+}
+.device-page .empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+.device-page .empty-state {
+  font-size: 18px;
+  color: #666;
+  margin: 0;
+}
+.device-page .component-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  padding: 10px 0;
+}
+.device-page .component-card {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.device-page .component-card {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  border-color: #ccc;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feature {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed #f0f0f0;
+}
+.feature:last-child {
+  border-bottom: none;
+}
+.feature.button-feature {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 2px solid #eee;
+  border-bottom: none;
+  justify-content: center;
+}
+.feature.button-feature:last-child {
+  padding-bottom: 0;
+}
+.feature .label {
+  font-weight: 600;
+  color: #555;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.feature .value {
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: right;
+  word-break: break-word;
+  max-width: 60%;
+}
+
+.buy-button {
+  display: inline-block;
+  width: 100%;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #0055aa 0%, #003d7a 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 85, 170, 0.2);
+}
+.buy-button:hover {
+  background: linear-gradient(135deg, #004499 0%, #002b5c 100%);
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 85, 170, 0.3);
+  cursor: pointer;
+}
+.buy-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 85, 170, 0.2);
+}
+.buy-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 85, 170, 0.3);
+}/*# sourceMappingURL=device.css.map */

@@ -10,7 +10,6 @@ const ElectronicsDetail = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [selectedDevice, setSelectedDevice] = useState(null)
-
     useEffect(() => {
         axios
             .get(`/api/electronics/${id}`)
@@ -24,7 +23,7 @@ const ElectronicsDetail = () => {
             })
     }, [id])
 
-    const openModal = (device) => setSelectedDevice(device)
+
     const closeModal = () => setSelectedDevice(null)
 
     if (loading) return <p>Загрузка...</p>
@@ -63,12 +62,10 @@ const ElectronicsDetail = () => {
                             <div className="device-card__content">
                                 <h3>{dev.name_device}</h3>
                                 <p className="descripstion">{dev.parameters}</p>
-                                <button
-                                    className="device-card__button"
-                                    onClick={() => openModal(dev)}
-                                >
-                                    Подробнее
-                                </button>
+                                    <a className="device-card__button" 
+                                    href={`/electronics/${id}/${dev.id}`}>
+                                        подробнее
+                                    </a>
                             </div>
                         </div>
                     ))

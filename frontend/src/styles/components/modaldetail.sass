@@ -13,7 +13,7 @@
 
 .modal__content 
     display: flex
-    flex-direction: row /* Горизонтальное расположение для десктопа */
+    flex-direction: row 
     align-items: flex-start
     gap: 2rem
     background: var(--color-white)
@@ -136,7 +136,7 @@
     
 
 
-/* Мобильная версия - вертикальная структура */
+
 @media (max-width: 768px) 
     .modal 
         display: flex
@@ -177,7 +177,7 @@
         
         &__title
             font-size: 24px
-            text-align: center /* Центрируем заголовок на мобильных */
+            text-align: center
             margin-bottom: 0.5rem
         
         
@@ -185,7 +185,7 @@
         
         &__description 
             font-size: 16px
-            text-align: center /* Центрируем текст на мобильных */
+            text-align: center 
         
         
         &__details 
@@ -207,7 +207,7 @@
     
 
 
-/* Маленькие мобильные устройства */
+
 @media (max-width: 480px) 
     .modal
         &__content 
