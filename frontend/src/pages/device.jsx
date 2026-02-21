@@ -94,7 +94,7 @@ const Device = () => {
             <div className="container error">
                 <h2>Ошибка</h2>
                 <p>{error}</p>
-                <a href="/electronics" className="backLink" onClick={() => navigate(-1)}>
+                <a href="/electronics/:id" className="backLink" onClick={() => navigate(-1)}>
                     ← Назад
                 </a>
             </div>
@@ -110,7 +110,7 @@ const Device = () => {
         <div className="container device-page">
             <header>
                 <h1>{pageTitle}</h1>
-                <a href="/electronics" className="backLink" onClick={() => navigate(-1)}>
+                <a href={`/electronics/${type}`} className="backLink" onClick={() => navigate(-1)}>
                     ← Назад к компонентам
                 </a>
             </header>

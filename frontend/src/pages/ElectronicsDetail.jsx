@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
 import ScrollToTop from "../components/scrollButton"
-import ModalDetailElectronic from "../components/ModalDetailElectronic"
+
 
 const ElectronicsDetail = () => {
     const { id } = useParams()
@@ -61,7 +61,6 @@ const ElectronicsDetail = () => {
                             </div>
                             <div className="device-card__content">
                                 <h3>{dev.name_device}</h3>
-                                <p className="descripstion">{dev.parameters}</p>
                                     <a className="device-card__button" 
                                     href={`/electronics/${id}/${dev.id}`}>
                                         подробнее
