@@ -2,52 +2,55 @@ import { useState, useEffect } from "react";
 import Card from "../components/Card";
 import axios from "axios";
 import ScrollToTop from "../components/scrollButton";
+import { generateSlug } from "../utils/slug";   // ← важно!
 
 const Electronics = () => {
-const [components, setComponents] = useState([])
-const [loading, setLoading] = useState(true)
-const [error, setError] = useState(null)
+  const [components, setComponents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-useEffect(() => {
+  useEffect(() => {
     axios
-    .get("/api/electronics")
-    .then((res) => {
-        setComponents(res.data)
-        setLoading(false)
-    })
-    .catch((err) => {
-        setError("Не удалось загрузить компоненты")
-        setLoading(false)
-        console.error(err)
-    });
-}, []);
+      .get("/api/electronics")
+      .then((res) => {
+        setComponents(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError("Не удалось загрузить компоненты");
+        setLoading(false);
+        console.error(err);
+      });
+  }, []);
 
+  if (loading) return <p>Загрузка...</p>;
+  if (error) return <div className="container_error">{error}</div>;
 
-if (loading) return <p>Загрузка...</p>
-if (error) return <div className="container_error">{error}</div>;
-return (
+  return (
     <section className="container">
-    <header>
+      <header>
         <h1>Электронные компоненты</h1>
         <a href="/" className="backLink">
-        ← На главную
+          ← На главную
         </a>
-    </header>
+      </header>
 
-    <main className="cards">
+      <main className="cards">
         {components.map((comp) => (
-        <Card
+          <Card
             key={comp.id}
-            to={`/electronics/${comp.id}`}
+            to={`/electronics/${generateSlug(comp.name_detail, comp.id)}`}
             image={comp.images || "/images/placeholder.png"}
             title={comp.name_detail}
             description={comp.description || "Нет описания"}
             buttonText="Подробнее"
-        />
+          />
         ))}
-        </main>
-        < ScrollToTop />
+      </main>
+
+      <ScrollToTop />
     </section>
-    );
+  );
 };
+
 export default Electronics;
