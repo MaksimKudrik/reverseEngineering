@@ -1,9 +1,8 @@
 // Device.scss
 
-.container 
-    max-width: 1200px
-    margin: 0 auto
-    padding: 20px
+.container
+    align-items: center
+
 
     &.loading,
     &.error 
@@ -44,7 +43,7 @@
     header 
         display: flex
         justify-content: space-between
-        align-items: center
+        align-items: flex-start
         margin-bottom: 30px
         padding-bottom: 15px
         border-bottom: 2px solid #eee
@@ -187,4 +186,64 @@
     
 
 
+
+@media (max-width: 768px) 
+  .container 
+    padding: 15px
+  
+
+  .device-page 
+    header 
+      flex-direction: column
+      gap: 15px
+      align-items: flex-start
+
+      h1 
+        font-size: 24px
+      
+    
+
+    .component-grid 
+      grid-template-columns: 1fr
+      gap: 16px
+    
+
+    .feature 
+      .label 
+        font-size: 13px
+      
+
+      .value 
+        font-size: 14px
+      
+    
+
+    .buy-button 
+      padding: 12px 20px
+      font-size: 14px
+    
+  
+
+
+@media (max-width: 480px) 
+  .device-page 
+    .component-card 
+      padding: 15px
+    
+
+    .feature 
+      flex-direction: column
+      align-items: flex-start
+      gap: 5px
+
+      .value 
+        text-align: left
+        max-width: 100%
+      
+
+      &.button-feature 
+        align-items: stretch
+      
+    
+  
 

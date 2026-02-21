@@ -104,24 +104,51 @@ const electronicsHandlers = {
 
 app.get('/api/electronics/:type/:id', async (req, res) => {
     const type = req.params.type;
-    const id = parseInt(req.params.id);
+    const deviceId = parseInt(req.params.id);
 
     const handler = electronicsHandlers[type];
     if (!handler) {
-        return res.status(400).json({ error: `Неизвестный тип электроники: ${type}` });
+        return res.status(400).json({ error: `Неизвестный тип: ${type}` });
     }
 
-    console.log(`→ Запрос к /api/electronics/${type}/${id} (${handler.logName})`);
+    console.log(`→ Запрос /api/electronics/${type}/${deviceId} (${handler.logName})`);
 
     try {
-        const result = await pool.query(
-        `SELECT ${handler.fields} FROM ${handler.table} WHERE device_id = $1 ORDER BY id ASC`,
-        [id]
+        // 1. Получаем информацию о самом устройстве
+        const deviceRes = await pool.query(
+                `SELECT id, name_device, images 
+                FROM electronic_devices 
+                WHERE id = $1`,
+            [deviceId]
         );
-        
-        res.json(result.rows);
+
+        if (deviceRes.rows.length === 0) {
+            return res.status(404).json({ error: 'Устройство не найдено' });
+        }
+
+        const device = deviceRes.rows[0];
+
+        // 2. Получаем связанные компоненты
+        const componentsRes = await pool.query(
+                `SELECT ${handler.fields} 
+                FROM ${handler.table} 
+                WHERE device_id = $1 
+                ORDER BY id ASC`,
+            [deviceId]
+        );
+
+        // Возвращаем и устройство, и список компонентов
+        res.json({
+            device: {
+                id: device.id,
+                name: device.name_device,     // ← вот оно
+                images: device.images || null,
+            },
+            components: componentsRes.rows
+        });
+
     } catch (err) {
-        console.error(`Ошибка в /api/electronics/${type}/${id}:`, err.message);
+        console.error(`Ошибка /api/electronics/${type}/${deviceId}:`, err.message);
         res.status(500).json({ error: 'Ошибка сервера' });
     }
 });
